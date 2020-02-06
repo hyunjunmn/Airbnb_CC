@@ -48,7 +48,7 @@ class photo(core_models.TimeStampedModel):
     """Photo model definition"""
     caption = models.CharField(max_length=80)
     file = models.ImageField()
-    room = models.ForeignKey("Room",related_name = "rooms",on_delete=models.CASCADE) #그냥 ROOM으로 하면 파이썬은 위에서 밑으로 읽기때문에 room클래스가 없어서 읽어오지 못한다. 
+    room = models.ForeignKey("Room",related_name = "photos",on_delete=models.CASCADE) #그냥 ROOM으로 하면 파이썬은 위에서 밑으로 읽기때문에 room클래스가 없어서 읽어오지 못한다. 
     #하지만""을 하게되면 string으로 읽게되서 자동으로 인식한다
     def __str__(self):
         return self.caption
