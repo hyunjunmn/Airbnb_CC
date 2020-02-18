@@ -18,4 +18,6 @@ class ReservationAdmin(admin.ModelAdmin):
     list_filter = (
         "status",
         )
+    
+
 # Register your models here.
