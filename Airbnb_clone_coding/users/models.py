@@ -30,7 +30,7 @@ class User(AbstractUser):
         (CURRENCY_KRW ,"KRW")
     )
     
-    avatar = models.ImageField(blank=True)
+    avatar = models.ImageField(upload_to="avatars",blank=True)
     gender = models.CharField(choices=GENDER_CHOICES,max_length=10,blank=True)  #charfield 한줄필드
     bio = models.TextField(blank=True) #textfield 필드제한없음
     birthdate = models.DateField(blank=True,null=True)
