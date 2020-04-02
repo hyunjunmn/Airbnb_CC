@@ -2,14 +2,18 @@
 
 
 {%block page_name%}
-Home
+Home 
 {%endblock page_name%}
-
+ 
 {%block content%}
 
-{% for room in object_list %}
-    <h1>{{room.name}} / ${{room.price}}</h1>
-{% endfor %}
+    {{ now }}
+
+    {% for room in rooms %}
+    <h3><a href="{% url "rooms:detail" room.pk %}">
+         {{room.name}} / ${{room.price}}
+         </a></h3>
+    {% endfor %}
 
    <h5>
     {%if page_obj.has_previous %}
