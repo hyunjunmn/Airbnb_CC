@@ -1,5 +1,6 @@
 from django.views.generic import ListView
-from django.shortcuts import render
+from django.urls import reverse
+from django.shortcuts import render,redirect
 from . import models
 # Create your views here.
 
@@ -14,27 +15,10 @@ class HomeView(ListView):
      # page_kwarg = "page"
      
 def room_detail(request,pk):
-      print(pk)
-      return render(request,"rooms/detail.html")
-      
-
-"""def get_context_data(self, **kwargs):
-          context =super().get_context_data(**kwargs)
-          now = timezone.now()
-          context["now"] = now
-          return context """
-      #how to use class based view
-
-
-'''def all_rooms(request):
-    page = int(request.GET.get("page",1))
-    room_list = models.Room.objects.all()  #query sets
-    paginator = Paginator(room_list, 10,orphans=5) #orpahns남은 자료들을 그 전페이지로 이어붙임
     try:
-        rooms = paginator.page(int(page))
-        return render(request,"rooms/home.html",{"page":rooms})
-    except EmptyPage:
-      return redirect("/")
-      #rooms = paginator.page(1)
-  #  print(vars(rooms.paginator))
-    '''
+        room = models.Room.objects.get(pk=pk)
+    except models.Room.DoesNotExist:
+        return redirect(reverse("core:home"))
+    
+    return render(request,"rooms/detail.html",{'room':room})
+
